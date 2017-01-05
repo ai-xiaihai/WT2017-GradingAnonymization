@@ -11,7 +11,7 @@ this grading system better. My eventual product would allow graders to grade wit
 3. I will modify the grading system so graders can see their grading assignments and put in grades but they cannot see students’ names and past grades. This goal involves multiple parts. I will create soft links to students’ grade files. I will also create a program to scan students’ grade files, fetch the grades and put them into a gradebook (maybe a Google sheet). I expect the program to be executed once a day by a cron job if it is actually incorporated into the grading system.
 
 # Part 1: Redaction.
-* Input: A list of student names (first, last, f+last); A java file.
+* Input: A list of student names (first, last, f+last); A java file (or README).
 * Output: A java file with students’ name redacted.
 * Goal: Replace students’ names with XXXXX
 * Note: 
