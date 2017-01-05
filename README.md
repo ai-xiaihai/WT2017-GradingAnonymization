@@ -15,9 +15,9 @@ this grading system better. My eventual product would allow graders to grade wit
 * Output: A java file with students’ name redacted.
 * Goal: Replace students’ names with XXXXX
 * Note: 
-  - only replace names in comments (\\, \* … … *\ , @); 
+  - only replace names in comments (\\\\, \\\* … … \*\\); 
   - for each java file, look for all students’ names;
 * Question: 
   - Where this redaction file will be executed?
   - Where do I get list of student names?
-  - Which language?
+  - Which language? Python
