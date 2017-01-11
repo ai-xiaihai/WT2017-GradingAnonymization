@@ -24,3 +24,7 @@ this grading system better. My eventual product would allow graders to grade wit
   - Where this redaction file will be executed?
   - Where do I get list of student names?
   - Which language? Python
+
+# Part 2: hide students' names in student submission file name.
+* Need to change the existing grader (pregrader, send) or make a new file that work with the existing grader
+* Need a hash function for students' cs account name
