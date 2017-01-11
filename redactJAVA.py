@@ -1,7 +1,7 @@
 # Redact a list of names in a java source code file
 # names would be turn into "NAME"
 # Author: Xinnan Cheng (2017 WT)
-# Usage: python redactjava.py <name list file> <original file> <redacted file>
+# Usage: python redactJAVA.py <name list file> <original file> <redacted file>
 
 import sys, re
 
