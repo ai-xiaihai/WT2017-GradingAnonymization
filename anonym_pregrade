@@ -1,0 +1,43 @@
+#!/usr/bin/python
+# This file should be executed along with 'grader pregrade'
+# Author: Xinnan Cheng (2017 WT)
+# 
+
+import os
+
+### CHANGE THESE APPROPRIATELY ###
+num_grader = 4
+##################################
+
+#### OBTAIN THESE FROM GRADER ####
+#### Need modification ###########
+sem = "Spring2017"
+ASSN_TYPE="lab"
+num_assn=1
+##################################
+
+lab_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn
+grades_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_grades"
+backup_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_backup"
+
+# the location of annoynmous lab direvtory
+lab_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn
+# the location of annoynmous lab grades (symlink to real lab grades)
+grade_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn+"_grades"
+
+# create directories if not exist
+if (!os.path.exists(lab_redact_dir)):
+	os.makedirs(lab_redact_dir)
+if (!os.path.exists(grade_redact_dir)):
+	os.makedirs(grade_redact_dir)
+
+# deal with annoynmous lab grade file
+	grade_name = os.listdir(lab_redact_dir)
+	grade_anonym = os.listdir(grade_redact_dir)
+	# make sure everything in grade_name has a symlink in grade_anonym 
+	for symlink in grade_anonym:
+		if os.readlink(grade_anonym+symlink) in 
+
+
+# deal with annoynmous lab files 
+
