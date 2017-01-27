@@ -24,41 +24,47 @@ backup_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_backup"
 lab_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn
 # the location of annoynmous lab grades (symlink to real lab grades)
 grade_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn+"_grades"
+# the file with all student names
+name_list = "grades/"+sem+"/name_list"
 
 # create directories if not exist
 if (!os.path.exists(lab_redact_dir)):
 	os.makedirs(lab_redact_dir)
 if (!os.path.exists(grade_redact_dir)):
 	os.makedirs(grade_redact_dir)
+
 ###
 # deal with annoynmous lab grade file
+# make sure everything in grade_name has a symlink in grade_anonym 
 ###
 grade_name = os.listdir(grades_dir)
 grade_anonym = os.listdir(grade_redact_dir)
 
-# turn path in both lists into absolute path
-#for seq in range(len(grade_name)):
-#	grade_name[seq] = grades_dir + '/' + grade_name[seq]
-#for seq in range(len(grade_anonym)):
-#	grade_anonym[seq] = grade_redact_dir  + '/' + grade_anonym[seq]
+# keep track of student name and their respective hash name
+hash_dict = {}
 
-# make sure everything in grade_name has a symlink in grade_anonym 
 for i in range(len(grade_name)):
 	for j in range(len(grade_anonym)):
 		if os.path.realpath(grades_dir + '/' + grade_name[i]) \
 			== os.path.realpath(grade_redact_dir  + '/' + grade_anonym[j]):
-			del(grade_name[i])
+			hash_dict[grade_name[i]] = grade_anonym[j]
+			del grade_name[i]
 			break
 
 for i in range(len(grade_name)):
 	# create a hash_name for each student
-	hash_name = "" + random.randint(1,num_grader) \
+	# the first number shows the assignment of the grader
+	hash_name = '[' + random.randint(1,num_grader) + ']' + \
 				+ hashlib.sha224(grade_name[i]).hexdigest()
 	# create symlink for each students' grade file
 	os.symlink(grades_dir + '/' + grade_name[i], 
 		grade_redact_dir  + '/' + hash_name)
+	hash_dict[grade_name[i]] = hash_name
 
-
-
+###
 # deal with annoynmous lab files 
+###
+lab_name = os.listdit(lab_dir)
+lab_anonym = os.listdit(lab_redact_dir)
+
 
