@@ -3,7 +3,7 @@
 # Author: Xinnan Cheng (2017 WT)
 # 
 
-import os, hashlib, random
+import os, hashlib, random, glob
 
 ### CHANGE THESE APPROPRIATELY ###
 num_grader = 4
@@ -64,7 +64,49 @@ for i in range(len(grade_name)):
 ###
 # deal with annoynmous lab files 
 ###
-lab_name = os.listdit(lab_dir)
-lab_anonym = os.listdit(lab_redact_dir)
+lab_name = glob.glob(lab_dir+"/*."+num_assn+".*/")
+lab_anonym = os.listdir(lab_redact_dir)
+
+lab_hash = []
+for anon in lab_anonym:
+	lab_hash.append(anon.split('.')[0])
+lab_time = []
+for anon in lab_anonym:
+	lab_hash.append(anon.split('.')[2])
+
+# assume that if a student's submission is in lab_dir, 
+# then this student also has a grade file already created
+for name in lab_name:
+	stu_name = name.split('.')[0]
+	stu_time = name.split('.')[2]
+
+	# check if one student's submission already has a redacted verison
+	try:
+		if (hash_dict[stu_name] not in lab_hash) or (stu_time not in lab_time):
+			exist = False
+		else:
+			exist = True
+	except KeyError:
+		exist = True
+		print "There is no grade file for " + stu_name + " !" 
+
+	# create redacted version if not
+	if not exist:
+		os.mkdir(lab_redact_dir+'/'+hash_dict[stu_name]
+			+'.'+num_assn+'.'+stu_time)
+
+		javafiles = []
+		readmes = []
+		other = []
+		for root, dirnames, filenames in os.walk(os.path.join(lab_dir,name)):
+			for fname in filenames:
+				if fnmatch.fnmatchcase(fname, "*.[Jj][Aa][Vv][Aa]"):
+					javafiles.append(os.path.join(root, fname))
+				elif fnmatch.fnmatchcase(fname, "*.[Rr][Ee][Aa][Dd][Mm][Ee]"):
+					readmes.append(os.path.join(root, fname))
+				else:
+					other.append(os.path.join(root, fname))
+
+
 
 
