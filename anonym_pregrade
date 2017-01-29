@@ -3,7 +3,7 @@
 # Author: Xinnan Cheng (2017 WT)
 # 
 
-import os, hashlib, random, glob
+import os, hashlib, random, glob, subprocess, string
 
 ### CHANGE THESE APPROPRIATELY ###
 num_grader = 4
@@ -16,6 +16,8 @@ ASSN_TYPE="lab"
 num_assn=1
 ##################################
 
+py_redactJAVA = "" # the location of the file
+py_redactREADME = "" # the location of the file
 lab_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn
 grades_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_grades"
 backup_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_backup"
@@ -95,18 +97,32 @@ for name in lab_name:
 		os.mkdir(lab_redact_dir+'/'+hash_dict[stu_name]
 			+'.'+num_assn+'.'+stu_time)
 
+		# keep track all the files and dirs in a student submission
+		directories = []
 		javafiles = []
 		readmes = []
-		other = []
+		others = []
 		for root, dirnames, filenames in os.walk(os.path.join(lab_dir,name)):
+			for dir_name in directories:
+				directories.append(os.path.join(root, dir_name))
 			for fname in filenames:
 				if fnmatch.fnmatchcase(fname, "*.[Jj][Aa][Vv][Aa]"):
 					javafiles.append(os.path.join(root, fname))
 				elif fnmatch.fnmatchcase(fname, "*.[Rr][Ee][Aa][Dd][Mm][Ee]"):
 					readmes.append(os.path.join(root, fname))
 				else:
-					other.append(os.path.join(root, fname))
+					others.append(os.path.join(root, fname))
 
-
-
-
+		for dr in directories:
+			try:
+				os.makedirs(dr)
+			except OSError:
+				pass # do nothing, it is fine
+		for jf in javafiles: # create redacted java files
+			subprocess.call('./'+py_redactJAVA,name_list, jf, 
+				string.replace(jf,lab_dir,lab_redact_dir ))
+		for rm in readmes: # create redacted readme files
+			subprocess.call('./'+py_redactREADME,name_list, rm, 
+				string.replace(rm,lab_dir,lab_redact_dir ))
+		for ot in others: # symlink other files 
+			os.symlink(ot, string.replace(ot,lab_dir,lab_redact_dir ))
