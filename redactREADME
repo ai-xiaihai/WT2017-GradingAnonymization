@@ -2,7 +2,7 @@
 # Redact a list of names in a README file
 # names would be turn into "NAME"
 # Author: Xinnan Cheng (2017 WT)
-# Usage: python redactREADME.py <name list file> <original file> <redacted file>
+# Usage: ./redactREADME <name list file> <original file> <redacted file>
 
 import sys, re
 

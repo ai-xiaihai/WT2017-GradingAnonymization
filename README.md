@@ -1,30 +1,20 @@
 # WT2017-GradingAnonymization
+
 **Objective :**
+This project is intended to improve current CS 151 grading system. It will allow graders to grade without knowing students’ names and grade histories.
 
-I would like to make some tools and/or revise the current grading scripts to make
-this grading system better. My eventual product would allow graders to grade without knowing students’ names and grade histories. Due to the limitation of time and knowledge, I will place my focus on the grading system of CSCI 151.
+**What each file do:**
+*redactJAVA:
+-This python script will redact student names in JAVA files. It will only redact student names in comments.
+-Usage: ./redactJAVA <name list file> <original file> <redacted file>
+-This script is fully tested locally, but not on the OCCS server.
 
-**Plan :**
+*redactREADME:
+-This python script will redact student names in README files.
+-Usage: ./redactREADME <name list file> <original file> <redacted file>
+-This script is fully tested locally, but not on the OCCS server.
 
-1. I will make a program to replace students’ names in their source code with something else (possibly XXXXXXXX). The tricky part is that students may work with another student in some lab assignments. I also need to make sure that the program only changes the comments but not the actual code.
-2. I will make a program to turn the filenames of students’ submission into unique hashcode. I will create a list of soft links to students’ submission. I also want to mark students’ submission if they are late.
-3. I will modify the grading system so graders can see their grading assignments and put in grades but they cannot see students’ names and past grades. This goal involves multiple parts. I will create soft links to students’ grade files. I will also create a program to scan students’ grade files, fetch the grades and put them into a gradebook (maybe a Google sheet). I expect the program to be executed once a day by a cron job if it is actually incorporated into the grading system.
-
-# Part 1: Redaction.
-* Input: A list of student names (first, last, f+last); A java file (or README).
-* Output: A java file with students’ name redacted.
-* Goal: Replace students’ names with XXXXX
-* Note: 
-  - only replace names in comments (\\\\, \\\* … … \*\\); 
-  - for each java file, look for all students’ names;
-  - there can be both \\\\ and \\\* on the same line; 
-  - there can be both \\\* and \*\\ on the same line;
-  - there can be nested comments (there should not be);
-* Question: 
-  - Where this redaction file will be executed?
-  - Where do I get list of student names?
-  - Which language? Python
-
-# Part 2: hide students' names in student submission file name.
-* Need to change the existing grader (pregrader, send) or make a new file that work with the existing grader
-* Need a hash function for students' cs account name
+*anonym_pregrade
+-This python script will make a redacted version for each student's submission and grade files. This script calls two other python scripts: redactJAVA, redactREADME. 
+-Usage: ./anonym_pregrade
+-This script is not tested locally or on the OCCS server. This script need some modification to work with the grader script. Both anonym_pregrade and grader need some minor modification. The grader script should execute anonym_pregrade for the pregrade part.
