@@ -17,23 +17,26 @@ ASSN_TYPE="lab"
 num_assn=1
 ##################################
 
+#### Need modification ###########
 py_redactJAVA = "" # the location of the file
 py_redactREADME = "" # the location of the file
+##################################
+
 lab_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn
 grades_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_grades"
 backup_dir = "grades/"+sem+'/'+ASSN_TYPE+num_assn+"_backup"
 
 # the location of annoynmous lab direvtory
-lab_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn
+lab_redact_dir = "grades/"+sem+"_anonym/"+ASSN_TYPE+num_assn
 # the location of annoynmous lab grades (symlink to real lab grades)
-grade_redact_dir = "grades/"+sem+"_annoym"+'/'+ASSN_TYPE+num_assn+"_grades"
+grade_redact_dir = "grades/"+sem+"_anonym/"++ASSN_TYPE+num_assn+"_grades"
 # the file with all student names
-name_list = "grades/"+sem+"/name_list"
+name_list = "grades/"+sem+"_anonym/name_list"
 
 # create directories if not exist
-if (!os.path.exists(lab_redact_dir)):
+if not os.path.exists(lab_redact_dir):
 	os.makedirs(lab_redact_dir)
-if (!os.path.exists(grade_redact_dir)):
+if not os.path.exists(grade_redact_dir):
 	os.makedirs(grade_redact_dir)
 
 ###
