@@ -21,8 +21,8 @@ This project is intended to improve current CS 151 grading system. It will allow
 
 ## Where are the files
 - Before:
-.* grades
-..* Spring 2016
+⋅* grades
+⋅⋅* Spring 2016
 ..* Fall 2016
 ...* lab1
 ...* lab1_backup
