@@ -37,7 +37,7 @@ grades
 	    	bstudent.2.2016-XX-XX_XX-XX-XX
 	      		fun.java
 	      		fun.class
-	      		readme_b
+	      		readme_b.txt
 	  	lab2_backup
 	  	lab2_grades
 	    	student1
@@ -60,7 +60,7 @@ grades
 	    	bstudent.2.2016-XX-XX_XX-XX-XX
 	      		fun.java
 	      		fun.class
-	      		readme_b
+	      		readme_b.txt
 	  	lab2_backup
 	  	lab2_grades
 	    	student1
@@ -71,20 +71,20 @@ grades
   		lab1
       	lab1_grades
       	lab2
-	    	3disUhXsdscn8-G.2.2016-XX-XX_XX-XX-XX
-	      		cool.java    [redacted copy]
-	      		README1      [redacted copy]
-	      		cool.class 	 -> grades/Fall2016/lab2/student1.2.2016-XX-XX_XX-XX-XX/cool.class
-	      		sample.txt   -> grades/Fall2016/lab2/student1.2.2016-XX-XX_XX-XX-XX/sample.txt
-	    	1bcsh3r)UcDa!|p.2.2016-XX-XX_XX-XX-XX
-	      		fun.java     [redacted copy]
-	      		fun.class    -> grades/Fall2016/lab2/bstudent.2.2016-XX-XX_XX-XX-XX/fun.class
-	      		readme_b     [redacted copy]
+	    	[3]disUhXsdscn8-G.2.2016-XX-XX_XX-XX-XX
+	      		cool.java       [redacted copy]
+	      		README1         [redacted copy]
+	      		cool.class 	    -> grades/Fall2016/lab2/student1.2.2016-XX-XX_XX-XX-XX/cool.class
+	      		sample.txt      -> grades/Fall2016/lab2/student1.2.2016-XX-XX_XX-XX-XX/sample.txt
+	    	[1]bcsh3r)UcDa!|p.2.2016-XX-XX_XX-XX-XX
+	      		fun.java        [redacted copy]
+	      		fun.class       -> grades/Fall2016/lab2/bstudent.2.2016-XX-XX_XX-XX-XX/fun.class
+	      		readme_b.txt    [redacted copy]
 	  	lab2_grades
-	    	student1         -> grades/Fall2016/lab2_grades/student1
-	    	bstudent         -> grades/Fall2016/lab2_grades/bstudent
+	    	[3]disUhXsdscn8-G   -> grades/Fall2016/lab2_grades/student1
+	    	[1]bcsh3r)UcDa!|p   -> grades/Fall2016/lab2_grades/bstudent
 ```
 - Note: "->" is a symbol for symbolic links. 
 - Note: The file "name_list" should contain all student first names, last names, and cs account names.
-- Note: "disUhXsdscn8-G" is just an example. It should be a hash name for student1 using sha224. The "3" in the front of the string meaning this should be graded by grader 3. This number is randomly generated base on the total number of CS151 graders, which is hard coded in anonym_pregrade and should be changed when needed.
+- Note: "disUhXsdscn8-G" is just an example. It should be a hash name for student1 using sha224. The "[3]" in the front of the string meaning this should be graded by grader 3. This number is randomly generated base on the total number of CS151 graders, which is hard coded in anonym_pregrade and should be changed when needed.
 - Note: Since graders should not know who they are grading, graders cannot enter each student's grades on blackboard and gradebook. My solution is to have one grader to enter the grade for each lab after all grading is finished. The selected grader will use "grader report" to see all grades and enter all the grades to blackboard and gradebook.
